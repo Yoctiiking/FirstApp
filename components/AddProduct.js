@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { 
-  Text,
   View,
   StyleSheet,
   TextInput,
@@ -12,8 +11,13 @@ const AddProduct = ({submitHandler}) => {
     const [product, setProduct] = useState("");
 
     const inputHandler = (val) => {
-        setProduct(val);
-      };
+      setProduct(val);
+    };
+
+    const handleClick = () => {
+      submitHandler(product);
+      setProduct('');
+    }
 
     return (
         <View style = {styles.inputContainer}>
@@ -26,7 +30,7 @@ const AddProduct = ({submitHandler}) => {
             />
             <Button 
             title="Valider"
-            onPress={ () => submitHandler(product, setProduct) }
+            onPress={ handleClick }
             disabled={product.trim() === "" ? true : false}
             />
       </View>
